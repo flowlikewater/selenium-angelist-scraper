@@ -30,16 +30,30 @@ searchBox.clear()
 searchBox.send_keys('AI')
 searchBox.send_keys(u'\ue007')
 print('text filled in searchbox')
-time.sleep((random.random() * 2))
+time.sleep(1.5+(random.random() * 2))
 
 # click on Joined button
 browser.find_element_by_xpath('//*[@id="root"]/div[4]/div[2]/div/div[2]/div[2]/div[2]/div[1]/div/div[3]').click()
 print('joined button clicked')
-time.sleep((random.random() * 2))
+time.sleep(2+(random.random() * 2))
 
 # click on more button at bottom of page
 browser.find_element_by_css_selector('div.more').click()
 print('more clicked')
+
+# identify rows to Scrape
+divs = browser.find_element_by_css_selector('div.results')
+rows = divs.find_elements_by_class_name("startup")
+print rows
+
+# print row name and href by row
+for row in rows:
+   name = row.find_elements_by_class_name("startup-link")[1].get_attribute('innerHTML')
+   href = row.find_elements_by_class_name("startup-link")[1].get_attribute('href')
+   print name 
+   print href
+
+
 
 # browser.switch_to_frame('mainFrame')
 # ensure selenium wauts fir a few seconds before it gives up finding elements
