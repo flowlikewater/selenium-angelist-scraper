@@ -38,8 +38,14 @@ print('joined button clicked')
 time.sleep(2+(random.random() * 2))
 
 # click on more button at bottom of page
-browser.find_element_by_css_selector('div.more').click()
-print('more clicked')
+def clickTwentyTimes():
+    for _ in range(20):
+        time.sleep((2+random.random() * 1))
+        clickOnMore()
+def clickOnMore():
+    browser.find_element_by_css_selector('div.more').click()
+    print('more clicked')
+clickTwentyTimes()
 
 # identify rows to Scrape
 divs = browser.find_element_by_css_selector('div.results')
@@ -60,35 +66,4 @@ for row in rows:
     print href
     print location
 
-
-
-# browser.switch_to_frame('mainFrame')
-# ensure selenium wauts fir a few seconds before it gives up finding elements
-# method 1
-    # browser.implicitly_wait(30)
-# method 2
-    # from selenium.webdriver.common.by import By
-    # from selenium.webdriver.support.ui import WebDriverWait
-    # import selenium.webdriver.support.expected_conditions as EC
-    # from selenium.common.exceptions import TimeoutException
-    # some_object = WebDriverWait(browser, 120).until(EC.element_to_be_located((By.CSS_SELECTOR, 'img[alt=\"Some Button\"]')))
-    # try:
-    #     some_object = WebDriverWait(browser, 120).until(EC.element_to_be_located((By.CSS_SELECTOR, 'img[alt=\"Some Button\"]')))
-    #       or
-    #     some_object = WebDriverWait(browser, 120).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'img[alt=\"Some Button\"]')))
-    #       or
-    #     read all wait functions: http://selenium-python.readthedocs.io/waits.html
-    # except TimeoutException:
-    #     do something (retry, move on, exit, curse your internet provider, etc)
-    #     log_errors.write('couldnt locate button XYZ when searching for "balloon"' + '\n')
-# browser.find_element_by_id('terms')
-# browser.find_element_by_id('terms').clear()
-# browser.find_element_by_id('terms').send_keys('balloon')
-# browser.find_element_by_xpath('//*[@id="srchButt"]').click()
-# # browser.find_element_by_xpath('//*[@id="ddlDateOptions"]/option[contains(text(), "Today")]').click()
-# # browser.find_element_by_xpath('//*[@id="OkButt"]').click()
-# browser.switch_to_default_content()
-# browser.switch_to_frame('mainFrame')
-# browser.find_element_by_xpath('//*[@id="webId"]').clear()
-# browser.find_element_by_xpath('//*[@id="webId"]').send_keys('kevkev')
-# browser.quit()
+browser.quit()
