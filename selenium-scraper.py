@@ -48,10 +48,17 @@ print rows
 
 # print row name and href by row
 for row in rows:
-   name = row.find_elements_by_class_name("startup-link")[1].get_attribute('innerHTML')
-   href = row.find_elements_by_class_name("startup-link")[1].get_attribute('href')
-   print name 
-   print href
+    name = row.find_elements_by_class_name("startup-link")[1].get_attribute('innerHTML')
+    href = row.find_elements_by_class_name("startup-link")[1].get_attribute('href')
+    location = row.find_element_by_class_name("location").find_element_by_class_name("value")
+    try:
+        location_exists = location.find_element_by_tag_name("a").get_attribute('innerHTML')
+        location = location_exists
+    except: 
+        location = 'n/a'
+    print name 
+    print href
+    print location
 
 
 
