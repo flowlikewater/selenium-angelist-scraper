@@ -1,5 +1,7 @@
 import json, requests
 
+companyList = []
+
 def findIds(page, array):
     payloadKeywords = ''
     for i in range(len(array)):
@@ -11,16 +13,16 @@ def findIds(page, array):
     payload = json.loads(payloadKeywords)
     r = requests.post(url, headers=headers, data=payload)
     data = json.loads(r.text)
-    print data
-    print data['ids']
+    companyList.extend(data['ids'])
 
-def run20Times():
+def run20Times(keywordsArray):
     for i in range(2):
-        findIds(i, ['AI', 'Asia'])
+        findIds(i, keywordsArray)
+
+def scrapeKeywords(arrayOfArray):
+    for i in range(len(keywords_to_scrape)):
+        run20Times(keywords_to_scrape[i])
+    print(companyList)
 
 keywords_to_scrape = [['AI'],['AI', 'Asia'],['AI', 'Japan']]
-
-# run20Times()
-
-findIds(1,['AI', 'Asia'])
-findIds(2,['AI', 'Asia'])
+scrapeKeywords(keywords_to_scrape)
